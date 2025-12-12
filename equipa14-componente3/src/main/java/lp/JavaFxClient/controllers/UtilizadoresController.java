@@ -10,7 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
 
-public class UtilizadorController {
+public class UtilizadoresController {
 
     @FXML private TableView<UtilizadorDTO> utilizadoresTable;
     @FXML private TableColumn<UtilizadorDTO, Long> idCol;
@@ -40,7 +40,7 @@ public class UtilizadorController {
         try {
             String json = api.get("/utilizadores");
 
-            if (json.startsWith("ERROR:")) {
+            if (json.startsWith("ERROR")) {
                 showError(json);
                 return;
             }
@@ -55,42 +55,8 @@ public class UtilizadorController {
         }
     }
 
-    @FXML
-    public void onAddUtilizador() {
-        showInfo("Criar Utilizador", "Abrir formulário criar-utilizador.fxml");
-    }
-
-    @FXML
-    public void onDeleteUtilizador() {
-        UtilizadorDTO selected =
-                utilizadoresTable.getSelectionModel().getSelectedItem();
-
-        if (selected == null) {
-            showError("Seleciona um utilizador primeiro.");
-            return;
-        }
-
-        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION,
-                "Apagar utilizador " + selected.getNome() + "?",
-                ButtonType.YES, ButtonType.NO);
-
-        confirm.showAndWait();
-        if (confirm.getResult() != ButtonType.YES) return;
-
-        String result = api.delete("/utilizadores/" + selected.getId());
-        showInfo("Resultado", result);
-
-        loadUtilizadores();
-    }
-
     private void showError(String msg) {
         Alert a = new Alert(Alert.AlertType.ERROR, msg);
-        a.showAndWait();
-    }
-
-    private void showInfo(String title, String msg) {
-        Alert a = new Alert(Alert.AlertType.INFORMATION, msg);
-        a.setTitle(title);
         a.showAndWait();
     }
 }
