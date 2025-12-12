@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="403.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Menu Client JavaFx ">
+               <font>
+                  <Font name="Bell MT" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnCriarUtilizador" mnemonicParsing="false" onAction="#onCriarUtilizador" text="Criar Utilizador" textAlignment="CENTER" />
+            <Button fx:id="btnListarUtilizadores" mnemonicParsing="false" onAction="#onListarUtilizadores" text="Listar Utilizadores" />
+            <Button fx:id="btnApagarUtilizador" mnemonicParsing="false" onAction="#onApagarUtilizador" text="Apagar Utilizador" />
+            <Button fx:id="btnCriarTipo" mnemonicParsing="false" onAction="#onCriarTipo" text="Criar Tipo" />
+            <Button fx:id="btnCriarEvento" mnemonicParsing="false" onAction="#onCriarEvento" text="Criar Evento" />
+            <Button fx:id="btnEditarEvento" mnemonicParsing="false" onAction="#onEditarEvento" text="Editar Evento" />
+            <Button fx:id="btnListarEventos" mnemonicParsing="false" onAction="#onListarEventos" text="Listar Eventos" />
+            <Button fx:id="btnApagarEvento" mnemonicParsing="false" onAction="#onApagarEvento" text="Apagar Eventos" />
+            <Button fx:id="btnPoucaAderencia" mnemonicParsing="false" onAction="#onEventosPoucaAderencia" text="Eventos com Pouca Aderência" />
+            <Button fx:id="btnAprovarEvento" mnemonicParsing="false" onAction="#onAprovarEvento" text="Aprovar Evento" />
+            <Button fx:id="btnRejeitarEvento" mnemonicParsing="false" onAction="#onRejeitarEvento" text="Rejeitar Evento" />
+            <Button fx:id="btnInscreverEstudante" mnemonicParsing="false" onAction="#onInscreverEstudante" text="Inscrever Estudante" />
+            <Button fx:id="btnCancelarInscricao" mnemonicParsing="false" onAction="#onCancelarInscricao" text="Cancelar Inscrição" />
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#onSair" text="Sair" />
+         </children>
+      </VBox>
+   </children>
+</VBox>
