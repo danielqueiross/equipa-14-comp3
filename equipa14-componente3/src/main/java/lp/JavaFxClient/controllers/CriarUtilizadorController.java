@@ -37,7 +37,6 @@ public class CriarUtilizadorController {
                     txtPassword.getText()
             );
 
-            ObjectMapper mapper = new ObjectMapper();
             ObjectNode jsonNode = mapper.valueToTree(dto);
             jsonNode.put("tipo", cmbTipo.getValue());
 
@@ -56,6 +55,7 @@ public class CriarUtilizadorController {
             a.showAndWait();
         }
     }
+ 
 
     @FXML
     public void onCancelar() {

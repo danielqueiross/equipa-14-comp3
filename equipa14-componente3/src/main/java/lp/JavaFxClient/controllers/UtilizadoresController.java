@@ -1,12 +1,13 @@
 package lp.JavaFxClient.controllers;
 
-import lp.JavaFxClient.model.UtilizadorDTO;
-import lp.JavaFxClient.services.ApiService;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lp.JavaFxClient.model.UtilizadorDTO;
+import lp.JavaFxClient.services.ApiService;
 
 import java.util.List;
 
@@ -38,13 +39,31 @@ public class UtilizadoresController {
 
     private void loadUtilizadores() {
         try {
-            String json = api.get("/utilizadores");
+            String json = api.get("/api/utilizadores");
+            System.out.println("JSON recebido: " + json);
 
-            if (json.startsWith("ERROR")) {
+            // Se backend devolveu erro (objeto)
+            if (json.trim().startsWith("{") && json.contains("error")) {
                 showError(json);
                 return;
             }
 
+            // Caso venha wrapped (ex: { content: [...] })
+            if (json.trim().startsWith("{")) {
+                JsonNode root = mapper.readTree(json);
+                JsonNode content = root.get("content");
+
+                List<UtilizadorDTO> utilizadores =
+                        mapper.readValue(
+                            content.toString(),
+                            new TypeReference<List<UtilizadorDTO>>() {}
+                        );
+
+                utilizadoresTable.getItems().setAll(utilizadores);
+                return;
+            }
+
+            // Caso venha lista direta (igual ao tutorial)
             List<UtilizadorDTO> utilizadores =
                     mapper.readValue(json, new TypeReference<List<UtilizadorDTO>>() {});
 
@@ -54,6 +73,7 @@ public class UtilizadoresController {
             showError("Erro ao carregar utilizadores: " + e.getMessage());
         }
     }
+
 
     private void showError(String msg) {
         Alert a = new Alert(Alert.AlertType.ERROR, msg);

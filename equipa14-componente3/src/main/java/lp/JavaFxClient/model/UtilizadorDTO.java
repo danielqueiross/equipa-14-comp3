@@ -2,9 +2,11 @@ package lp.JavaFxClient.model;
 
 public class UtilizadorDTO {
 
+    private Long id;
     private String nome;
     private String email;
     private String password;
+    private String tipo;
 
     public UtilizadorDTO() {}
 
@@ -15,6 +17,10 @@ public class UtilizadorDTO {
     }
 
 
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
 
@@ -24,4 +30,6 @@ public class UtilizadorDTO {
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
+    public String getTipo() { return tipo; }
+    public void setTipo(String tipo) { this.tipo = tipo; }
 }
