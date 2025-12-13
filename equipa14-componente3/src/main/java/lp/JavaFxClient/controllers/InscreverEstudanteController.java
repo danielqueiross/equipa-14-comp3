@@ -1,51 +1,52 @@
 package lp.JavaFxClient.controllers;
 
-import lp.JavaFxClient.services.ApiService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import lp.JavaFxClient.model.InscricaoDTO;
+import lp.JavaFxClient.services.ApiService;
 
 public class InscreverEstudanteController {
 
     @FXML private TextField txtEstudanteId;
     @FXML private TextField txtEventoId;
-    @FXML private TextField txtNome;
+    @FXML private TextField txtNomeParticipante;
     @FXML private TextField txtEmail;
 
     private final ApiService api = new ApiService();
+    private final ObjectMapper mapper = new ObjectMapper();
 
     @FXML
     public void onInscrever() {
         try {
-            Long estudanteId = Long.parseLong(txtEstudanteId.getText());
-            Long eventoId = Long.parseLong(txtEventoId.getText());
-            String nome = txtNome.getText();
-            String email = txtEmail.getText();
+            long estudanteId = Long.parseLong(txtEstudanteId.getText().trim());
+            long eventoId = Long.parseLong(txtEventoId.getText().trim());
 
-            if (nome.isBlank() || email.isBlank()) {
-                showError("Nome e email são obrigatórios.");
+            InscricaoDTO dto = new InscricaoDTO();
+            dto.setNomeParticipante(txtNomeParticipante.getText().trim());
+            dto.setEmail(txtEmail.getText().trim());
+
+            String json = mapper.writeValueAsString(dto);
+
+            String result = api.post(
+                    "/gestao-eventos/inscricoes?estudanteId=" + estudanteId + "&eventoId=" + eventoId,
+                    json
+            );
+
+            if (result.startsWith("ERROR:")) {
+                showError(result);
                 return;
             }
 
-            String json = """
-            {
-              "nomeParticipante": "%s",
-              "email": "%s"
-            }
-            """.formatted(nome, email);
-
-            String url = "/gestao-eventos/inscricoes?estudanteId=" +
-                         estudanteId + "&eventoId=" + eventoId;
-
-            String result = api.post(url, json);
-
-            Alert info = new Alert(Alert.AlertType.INFORMATION, result);
+            Alert info = new Alert(Alert.AlertType.INFORMATION, "Inscrição criada:\n" + result);
             info.showAndWait();
-
             fechar();
 
         } catch (NumberFormatException e) {
-            showError("IDs inválidos.");
+            showError("IDs inválidos (Estudante ID e Evento ID têm de ser números).");
+        } catch (Exception e) {
+            showError("Erro ao inscrever: " + e.getMessage());
         }
     }
 

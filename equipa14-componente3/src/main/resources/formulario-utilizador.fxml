@@ -5,33 +5,34 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<VBox spacing="10" alignment="CENTER"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="lp.JavaFxClient.controllers.CriarUtilizadorController">
 
-<fx:root alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" type="VBox" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lp.JavaFxClient.controllersCriarUtilizadorController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
+
    <children>
       <Label text="Criar Utilizador">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
+
       <TextField fx:id="txtNome" promptText="Nome" />
       <TextField fx:id="txtEmail" promptText="Email" />
-      <TextField fx:id="txtPassword" promptText="Password" />
-      <ComboBox fx:id="cmbTipo" editable="true" prefWidth="150.0" promptText="Tipo" visibleRowCount="3" />
-      <Button fx:id="btnCriar" mnemonicParsing="false" onAction="#onCriar" text="Criar">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#onCancelar" text="Cancelar">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
+      <PasswordField fx:id="txtPassword" promptText="Password" />
+
+      <ComboBox fx:id="cmbTipo" promptText="Tipo" />
+
+      <Button text="Criar" onAction="#onCriar" />
+      <Button text="Cancelar" onAction="#onCancelar" />
    </children>
-</fx:root>
+
+</VBox>

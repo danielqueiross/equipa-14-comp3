@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="12" alignment="CENTER"
+      prefWidth="400" prefHeight="250"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="lp.JavaFxClient.controllers.InscreverEstudanteController">
+
+    <children>
+
+        <Label text="Inscrever Estudante"/>
+
+        <TextField fx:id="txtIdEstudante"
+                   promptText="ID do Estudante"/>
+
+        <TextField fx:id="txtIdEvento"
+                   promptText="ID do Evento"/>
+
+        <Button text="Inscrever"
+                onAction="#onInscrever"/>
+
+        <Button text="Cancelar"
+                onAction="#onCancelar"/>
+
+    </children>
+</VBox>

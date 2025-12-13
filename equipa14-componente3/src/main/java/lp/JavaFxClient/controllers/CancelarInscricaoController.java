@@ -1,9 +1,9 @@
 package lp.JavaFxClient.controllers;
 
-import lp.JavaFxClient.services.ApiService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import lp.JavaFxClient.services.ApiService;
 
 public class CancelarInscricaoController {
 
@@ -14,22 +14,29 @@ public class CancelarInscricaoController {
     @FXML
     public void onCancelarInscricao() {
         try {
-            Long id = Long.parseLong(txtInscricaoId.getText());
+            long id = Long.parseLong(txtInscricaoId.getText().trim());
 
             Alert confirm = new Alert(
                     Alert.AlertType.CONFIRMATION,
                     "Cancelar inscrição com ID " + id + "?",
                     ButtonType.YES, ButtonType.NO
             );
-
             confirm.showAndWait();
             if (confirm.getResult() != ButtonType.YES) return;
 
             String result = api.delete("/gestao-eventos/inscricoes/" + id);
 
-            Alert info = new Alert(Alert.AlertType.INFORMATION, result);
-            info.showAndWait();
+            if (result.startsWith("ERROR:")) {
+                showError(result);
+                return;
+            }
 
+            Alert info = new Alert(Alert.AlertType.INFORMATION,
+                    result == null || result.isBlank()
+                            ? "Inscrição cancelada com sucesso!"
+                            : result
+            );
+            info.showAndWait();
             fechar();
 
         } catch (NumberFormatException e) {
@@ -38,7 +45,7 @@ public class CancelarInscricaoController {
     }
 
     @FXML
-    public void onCancelar() {
+    public void onFechar() {
         fechar();
     }
 

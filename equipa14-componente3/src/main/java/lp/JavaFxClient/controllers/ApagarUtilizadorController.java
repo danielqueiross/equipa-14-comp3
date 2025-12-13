@@ -25,7 +25,7 @@ public class ApagarUtilizadorController {
             confirm.showAndWait();
             if (confirm.getResult() != ButtonType.YES) return;
 
-            String result = api.delete("/utilizadores/" + id);
+            String result = api.delete("/api/utilizadores/" + id);
 
             Alert info = new Alert(Alert.AlertType.INFORMATION, result);
             info.showAndWait();
