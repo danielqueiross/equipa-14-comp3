@@ -1,21 +1,16 @@
 package lp.JavaFxClient.model;
 
 public class EventoDTO {
+
     private Long id;
     private String titulo;
     private String descricao;
-    private String data;        
+    private String data;
     private int lotacaoMax;
+    private int numParticipantes;
+    private String estado;
 
     public EventoDTO() {}
-
-    public EventoDTO(Long id, String titulo, String descricao, String data, int lotacaoMax) {
-        this.id = id;
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.data = data;
-        this.lotacaoMax = lotacaoMax;
-    }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -31,4 +26,12 @@ public class EventoDTO {
 
     public int getLotacaoMax() { return lotacaoMax; }
     public void setLotacaoMax(int lotacaoMax) { this.lotacaoMax = lotacaoMax; }
+
+    public int getNumParticipantes() { return numParticipantes; }
+    public void setNumParticipantes(int numParticipantes) {
+        this.numParticipantes = numParticipantes;
+    }
+
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
 }
