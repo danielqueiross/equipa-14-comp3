@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lp.JavaFxClient.controllers.FormController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lp.JavaFxClient.controllers.MainController">
    <children>
       <VBox alignment="CENTER" prefHeight="403.0" prefWidth="600.0">
          <children>
@@ -14,20 +16,49 @@
                   <Font name="Bell MT" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btnCriarUtilizador" mnemonicParsing="false" onAction="#onCriarUtilizador" text="Criar Utilizador" textAlignment="CENTER" />
-            <Button fx:id="btnListarUtilizadores" mnemonicParsing="false" onAction="#onListarUtilizadores" text="Listar Utilizadores" />
-            <Button fx:id="btnApagarUtilizador" mnemonicParsing="false" onAction="#onApagarUtilizador" text="Apagar Utilizador" />
-            <Button fx:id="btnCriarTipo" mnemonicParsing="false" onAction="#onCriarTipo" text="Criar Tipo" />
-            <Button fx:id="btnCriarEvento" mnemonicParsing="false" onAction="#onCriarEvento" text="Criar Evento" />
-            <Button fx:id="btnEditarEvento" mnemonicParsing="false" onAction="#onEditarEvento" text="Editar Evento" />
-            <Button fx:id="btnListarEventos" mnemonicParsing="false" onAction="#onListarEventos" text="Listar Eventos" />
-            <Button fx:id="btnApagarEvento" mnemonicParsing="false" onAction="#onApagarEvento" text="Apagar Eventos" />
-            <Button fx:id="btnPoucaAderencia" mnemonicParsing="false" onAction="#onEventosPoucaAderencia" text="Eventos com Pouca Aderência" />
-            <Button fx:id="btnAprovarEvento" mnemonicParsing="false" onAction="#onAprovarEvento" text="Aprovar Evento" />
-            <Button fx:id="btnRejeitarEvento" mnemonicParsing="false" onAction="#onRejeitarEvento" text="Rejeitar Evento" />
-            <Button fx:id="btnInscreverEstudante" mnemonicParsing="false" onAction="#onInscreverEstudante" text="Inscrever Estudante" />
-            <Button fx:id="btnCancelarInscricao" mnemonicParsing="false" onAction="#onCancelarInscricao" text="Cancelar Inscrição" />
-            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#onSair" text="Sair" />
+            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0" spacing="10.0">
+               <children>
+                  <Button fx:id="btnCriarUtilizador" mnemonicParsing="false" onAction="#onCriarUtilizador" prefHeight="26.0" prefWidth="178.0" text="Criar Utilizador" textAlignment="CENTER" />
+                  <Button fx:id="btnListarUtilizadores" mnemonicParsing="false" onAction="#onListarUtilizadores" prefHeight="26.0" prefWidth="172.0" text="Listar Utilizadores" />
+                  <Button fx:id="btnApagarUtilizador" mnemonicParsing="false" onAction="#onApagarUtilizador" prefHeight="26.0" prefWidth="187.0" text="Apagar Utilizador" />
+                  <Button fx:id="btnCriarTipo" mnemonicParsing="false" onAction="#onCriarTipo" prefHeight="26.0" prefWidth="204.0" text="Criar Tipo" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0" spacing="10.0">
+               <children>
+                  <Button fx:id="btnCriarEvento" mnemonicParsing="false" onAction="#onCriarEvento" prefHeight="26.0" prefWidth="139.0" text="Criar Evento" />
+                  <Button fx:id="btnEditarEvento" mnemonicParsing="false" onAction="#onEditarEvento" prefHeight="26.0" prefWidth="118.0" text="Editar Evento" />
+                  <Button fx:id="btnListarEventos" mnemonicParsing="false" onAction="#onListarEventos" prefHeight="26.0" prefWidth="122.0" text="Listar Eventos" />
+                  <Button fx:id="btnApagarEvento" mnemonicParsing="false" onAction="#onApagarEvento" prefHeight="26.0" prefWidth="142.0" text="Apagar Eventos" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="66.0" prefWidth="600.0" spacing="10.0">
+               <children>
+                  <Button fx:id="btnPoucaAderencia" mnemonicParsing="false" onAction="#onEventosPoucaAderencia" prefHeight="26.0" prefWidth="182.0" text="Eventos com Pouca Aderência" />
+                  <Button fx:id="btnAprovarEvento" mnemonicParsing="false" onAction="#onAprovarEvento" prefHeight="26.0" prefWidth="144.0" text="Aprovar Evento" />
+                  <Button fx:id="btnRejeitarEvento" mnemonicParsing="false" onAction="#onRejeitarEvento" prefHeight="26.0" prefWidth="162.0" text="Rejeitar Evento" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="82.0" prefWidth="600.0" spacing="10.0">
+               <children>
+                  <Button fx:id="btnInscreverEstudante" mnemonicParsing="false" onAction="#onInscreverEstudante" text="Inscrever Estudante" />
+                  <Button fx:id="btnCancelarInscricao" mnemonicParsing="false" onAction="#onCancelarInscricao" text="Cancelar Inscrição" />
+               </children>
+            </HBox>
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#onSair" prefHeight="32.0" prefWidth="50.0" text="Sair">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
    </children>

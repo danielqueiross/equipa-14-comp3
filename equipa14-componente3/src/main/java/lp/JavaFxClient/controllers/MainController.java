@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class FromController {
+public class MainController {
 
     @FXML public void onCriarUtilizador() {
         abrirJanela("/criar-utilizador.fxml", "Criar Utilizador");
