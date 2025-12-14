@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.TextArea?>
 
 <VBox spacing="10" alignment="CENTER"
       xmlns="http://javafx.com/javafx/21"
@@ -23,8 +24,11 @@
       </Label>
       <TextField fx:id="txtEventoId" promptText="ID do evento:" />
       <TextField fx:id="txtGestorId" promptText="ID do Gestor:" />
-      <TextField fx:id="txtMotivo" promptText="Motivo da Rejeição (Apenas se rejeitar):" />
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+ 		<TextArea fx:id="txtMotivo"
+                  promptText="Motivo da rejeição (Apenas se Rejeitar)"
+                  prefRowCount="4"
+                  wrapText="true"/>      
+       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
             <Button mnemonicParsing="false" onAction="#onAprovar" text="Aprovar">
                <font>

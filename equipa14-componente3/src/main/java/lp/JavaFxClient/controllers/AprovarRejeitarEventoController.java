@@ -20,15 +20,19 @@ public class AprovarRejeitarEventoController {
             Long eventoId = Long.parseLong(txtEventoId.getText());
             Long gestorId = Long.parseLong(txtGestorId.getText());
 
-            String url = "/gestao-eventos/eventos/" + eventoId +
-                         "/aprovar?gestorId=" + gestorId;
+            String resposta = api.post(
+                "/api/gestao-eventos/eventos/" + eventoId + "/aprovar?gestorId=" + gestorId,
+                ""
+            );
 
-            String result = api.post(url, null);
-            showInfo("Evento aprovado", result);
+            Alert a = new Alert(Alert.AlertType.INFORMATION,
+                    "Evento aprovado com sucesso!");
+            a.showAndWait();
+
             fechar();
 
-        } catch (NumberFormatException e) {
-            showError("IDs inválidos.");
+        } catch (Exception e) {
+            showError("Erro ao aprovar evento:\n" + e.getMessage());
         }
     }
 
@@ -44,16 +48,23 @@ public class AprovarRejeitarEventoController {
                 return;
             }
 
-            String url = "/gestao-eventos/eventos/" + eventoId +
-                         "/rejeitar?gestorId=" + gestorId +
-                         "&motivo=" + motivo.replace(" ", "%20");
+            String motivoEncoded = java.net.URLEncoder.encode(
+                    motivo,
+                    java.nio.charset.StandardCharsets.UTF_8
+            );
 
-            String result = api.post(url, null);
-            showInfo("Evento rejeitado", result);
+            String url = "/api/gestao-eventos/eventos/" + eventoId
+                       + "/rejeitar?gestorId=" + gestorId
+                       + "&motivo=" + motivoEncoded;
+
+            String result = api.post(url, "");
+            showInfo("Evento rejeitado com sucesso", result);
             fechar();
 
         } catch (NumberFormatException e) {
             showError("IDs inválidos.");
+        } catch (Exception e) {
+            showError("Erro ao rejeitar evento:\n" + e.getMessage());
         }
     }
 
