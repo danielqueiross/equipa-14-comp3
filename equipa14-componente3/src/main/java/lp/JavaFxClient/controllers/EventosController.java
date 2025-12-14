@@ -1,12 +1,13 @@
 package lp.JavaFxClient.controllers;
 
-import lp.JavaFxClient.model.EventoDTO;
-import lp.JavaFxClient.services.ApiService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lp.JavaFxClient.model.EventoDTO;
+import lp.JavaFxClient.services.ApiService;
 
 import java.util.List;
 
@@ -30,10 +31,7 @@ public class EventosController {
         dataCol.setCellValueFactory(new PropertyValueFactory<>("data"));
         estadoCol.setCellValueFactory(new PropertyValueFactory<>("estado"));
         lotacaoCol.setCellValueFactory(new PropertyValueFactory<>("lotacaoMax"));
-        participantesCol.setCellValueFactory(
-                new PropertyValueFactory<>("numParticipantes")
-        );
-
+        participantesCol.setCellValueFactory(new PropertyValueFactory<>("numParticipantes"));
         loadEventos();
     }
 
@@ -44,7 +42,10 @@ public class EventosController {
 
     private void loadEventos() {
         try {
-            String json = api.get("/eventos");
+            String json = api.get("/api/eventos");
+
+
+            System.out.println("JSON recebido: " + json);
 
             if (json.startsWith("ERROR")) {
                 showError(json);
@@ -57,7 +58,7 @@ public class EventosController {
             eventosTable.getItems().setAll(eventos);
 
         } catch (Exception e) {
-            showError("Erro ao carregar eventos: " + e.getMessage());
+            showError("Erro ao carregar eventos:\n" + e.getMessage());
         }
     }
 

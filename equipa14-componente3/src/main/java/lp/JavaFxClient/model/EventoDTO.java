@@ -1,7 +1,8 @@
 package lp.JavaFxClient.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EventoDTO {
-
     private Long id;
     private String titulo;
     private String descricao;
@@ -11,6 +12,7 @@ public class EventoDTO {
     private String estado;
 
     public EventoDTO() {}
+    
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

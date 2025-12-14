@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="10" alignment="CENTER"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="lp.JavaFxClient.controllers.EditarEventoController">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <children>
+        <Label text="Editar Evento">
+            <font>
+                <Font size="16"/>
+            </font>
+        </Label>
+
+        <TextField fx:id="txtId" promptText="ID do Evento" />
+        <TextField fx:id="txtTitulo" promptText="Título" />
+        <TextArea fx:id="txtDescricao" promptText="Descrição" prefRowCount="3"/>
+        <TextField fx:id="txtData" promptText="Data (YYYY-MM-DD)" />
+        <TextField fx:id="txtLotacao" promptText="Lotação" />
+
+        <Button text="Guardar Alterações" onAction="#onGuardar"/>
+        <Button text="Cancelar" onAction="#onCancelar"/>
+    </children>
+</VBox>

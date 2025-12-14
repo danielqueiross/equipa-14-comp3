@@ -33,7 +33,7 @@ public class CriarEventoController {
                     Integer.parseInt(txtLotacao.getText())
             );
 
-            String url = "/gestao-eventos/eventos?organizadorId="
+            String url = "/api/eventos?organizadorId="
                     + txtOrganizadorId.getText()
                     + "&tipoId="
                     + txtTipoId.getText();

@@ -1,9 +1,9 @@
 package lp.JavaFxClient.controllers;
 
-import lp.JavaFxClient.services.ApiService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import lp.JavaFxClient.services.ApiService;
 
 public class ApagarEventoController {
 
@@ -16,24 +16,18 @@ public class ApagarEventoController {
         try {
             Long id = Long.parseLong(txtId.getText());
 
-            Alert confirm = new Alert(
-                    Alert.AlertType.CONFIRMATION,
-                    "Apagar evento com ID " + id + "?",
-                    ButtonType.YES, ButtonType.NO
-            );
+            api.delete("/api/eventos/" + id);
 
-            confirm.showAndWait();
-            if (confirm.getResult() != ButtonType.YES) return;
-
-            String result = api.delete("/eventos/" + id);
-
-            Alert info = new Alert(Alert.AlertType.INFORMATION, result);
-            info.showAndWait();
+            Alert a = new Alert(Alert.AlertType.INFORMATION,
+                    "Evento apagado com sucesso!");
+            a.showAndWait();
 
             fechar();
 
-        } catch (NumberFormatException e) {
-            showError("ID inválido.");
+        } catch (Exception e) {
+            Alert a = new Alert(Alert.AlertType.ERROR,
+                    "Erro ao apagar evento:\n" + e.getMessage());
+            a.showAndWait();
         }
     }
 
@@ -45,10 +39,5 @@ public class ApagarEventoController {
     private void fechar() {
         Stage stage = (Stage) txtId.getScene().getWindow();
         stage.close();
-    }
-
-    private void showError(String msg) {
-        Alert a = new Alert(Alert.AlertType.ERROR, msg);
-        a.showAndWait();
     }
 }

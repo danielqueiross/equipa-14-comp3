@@ -6,6 +6,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.TextArea?>
+
 
 <VBox spacing="10" alignment="CENTER"
       xmlns="http://javafx.com/javafx/21"
@@ -20,17 +22,25 @@
       <TextField fx:id="txtOrganizadorId" promptText="Organizador ID" />
       <TextField fx:id="txtTipoId" promptText="Tipo ID" />
       <TextField fx:id="txtTitulo" promptText="Titulo" />
-      <TextField fx:id="txtDescricao" promptText="Descrição" />
+      <TextArea fx:id="txtDescricao"
+          		promptText="Descrição"
+          		prefRowCount="3" />
       <TextField fx:id="txtData" promptText="Data (YYYY-MM-DD)" />
       <TextField fx:id="txtLotacao" promptText="Lotação" />
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <Button fx:id="btnCriar" mnemonicParsing="false" onAction="#onCriarEvento" text="Criar">
+			<Button fx:id="btnCriar"
+        			mnemonicParsing="false"
+        			onAction="#onCriarEvento"
+        			text="Criar">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#onCancelar" text="Cancelar">
+            <Button fx:id="btnCancelar"
+        			mnemonicParsing="false"
+        			onAction="#onCancelar"
+        			text="Cancelar">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
