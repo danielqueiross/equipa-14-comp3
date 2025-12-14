@@ -24,7 +24,7 @@ public class CancelarInscricaoController {
             confirm.showAndWait();
             if (confirm.getResult() != ButtonType.YES) return;
 
-            String result = api.delete("/gestao-eventos/inscricoes/" + id);
+            String result = api.delete("/api/gestao-eventos/inscricoes/" + id);
 
             if (result.startsWith("ERROR:")) {
                 showError(result);
@@ -45,9 +45,10 @@ public class CancelarInscricaoController {
     }
 
     @FXML
-    public void onFechar() {
+    public void onCancelar() {
         fechar();
     }
+
 
     private void fechar() {
         Stage stage = (Stage) txtInscricaoId.getScene().getWindow();

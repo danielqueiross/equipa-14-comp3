@@ -13,6 +13,8 @@ public class InscreverEstudanteController {
     @FXML private TextField txtEventoId;
     @FXML private TextField txtNomeParticipante;
     @FXML private TextField txtEmail;
+    @FXML private Button btnCancelar;
+
 
     private final ApiService api = new ApiService();
     private final ObjectMapper mapper = new ObjectMapper();
@@ -30,8 +32,8 @@ public class InscreverEstudanteController {
             String json = mapper.writeValueAsString(dto);
 
             String result = api.post(
-                    "/gestao-eventos/inscricoes?estudanteId=" + estudanteId + "&eventoId=" + eventoId,
-                    json
+            	    "/api/gestao-eventos/inscricoes?estudanteId=" + estudanteId + "&eventoId=" + eventoId,
+            	    json
             );
 
             if (result.startsWith("ERROR:")) {

@@ -13,17 +13,13 @@
 
         <Label text="Inscrever Estudante"/>
 
-        <TextField fx:id="txtIdEstudante"
-                   promptText="ID do Estudante"/>
+        <TextField fx:id="txtEstudanteId" promptText="ID do Estudante"/>
+        <TextField fx:id="txtEventoId" promptText="ID do Evento"/>
+        <TextField fx:id="txtNomeParticipante" promptText="Nome do Participante"/>
+        <TextField fx:id="txtEmail" promptText="Email"/>
 
-        <TextField fx:id="txtIdEvento"
-                   promptText="ID do Evento"/>
-
-        <Button text="Inscrever"
-                onAction="#onInscrever"/>
-
-        <Button text="Cancelar"
-                onAction="#onCancelar"/>
+        <Button text="Inscrever" onAction="#onInscrever"/>
+        <Button fx:id="btnCancelar" text="Cancelar" onAction="#onCancelar"/>
 
     </children>
 </VBox>
