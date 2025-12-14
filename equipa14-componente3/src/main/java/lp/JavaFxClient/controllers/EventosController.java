@@ -43,9 +43,7 @@ public class EventosController {
     private void loadEventos() {
         try {
             String json = api.get("/api/eventos");
-
-
-            System.out.println("JSON recebido: " + json);
+            System.out.println(json);
 
             if (json.startsWith("ERROR")) {
                 showError(json);

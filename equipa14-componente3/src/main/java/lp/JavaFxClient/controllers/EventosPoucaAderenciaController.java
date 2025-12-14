@@ -1,19 +1,18 @@
 package lp.JavaFxClient.controllers;
 
-import lp.JavaFxClient.model.EventoDTO;
-import lp.JavaFxClient.services.ApiService;
-
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lp.JavaFxClient.model.EventoDTO;
+import lp.JavaFxClient.services.ApiService;
 
 import java.util.List;
 
 public class EventosPoucaAderenciaController {
 
     @FXML private TableView<EventoDTO> eventosTable;
+
     @FXML private TableColumn<EventoDTO, Long> idCol;
     @FXML private TableColumn<EventoDTO, String> tituloCol;
     @FXML private TableColumn<EventoDTO, Integer> lotacaoCol;
@@ -28,9 +27,7 @@ public class EventosPoucaAderenciaController {
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         tituloCol.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         lotacaoCol.setCellValueFactory(new PropertyValueFactory<>("lotacaoMax"));
-        participantesCol.setCellValueFactory(
-                new PropertyValueFactory<>("numParticipantes")
-        );
+        participantesCol.setCellValueFactory(new PropertyValueFactory<>("numParticipantes"));
         estadoCol.setCellValueFactory(new PropertyValueFactory<>("estado"));
 
         loadEventos();
@@ -43,7 +40,8 @@ public class EventosPoucaAderenciaController {
 
     private void loadEventos() {
         try {
-            String json = api.get("/gestao-eventos/eventos/pouca-adesao");
+            String json = api.get("/api/gestao-eventos/eventos/pouca-adesao");
+            System.out.println(json);
 
             if (json.startsWith("ERROR")) {
                 showError(json);
@@ -51,15 +49,18 @@ public class EventosPoucaAderenciaController {
             }
 
             List<EventoDTO> eventos =
-                    mapper.readValue(json, new TypeReference<List<EventoDTO>>() {});
+                    mapper.readValue(
+                            json,
+                            new com.fasterxml.jackson.core.type.TypeReference<List<EventoDTO>>() {}
+                    );
 
             eventosTable.getItems().setAll(eventos);
 
         } catch (Exception e) {
-            showError("Erro ao carregar eventos: " + e.getMessage());
+            showError("Erro ao carregar eventos:\n" + e.getMessage());
+            e.printStackTrace();
         }
     }
-
     private void showError(String msg) {
         Alert a = new Alert(Alert.AlertType.ERROR, msg);
         a.showAndWait();

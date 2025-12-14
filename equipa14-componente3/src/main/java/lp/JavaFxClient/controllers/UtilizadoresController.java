@@ -40,30 +40,13 @@ public class UtilizadoresController {
     private void loadUtilizadores() {
         try {
             String json = api.get("/api/utilizadores");
-            System.out.println("JSON recebido: " + json);
+            System.out.println(json);
 
-            // Se backend devolveu erro (objeto)
             if (json.trim().startsWith("{") && json.contains("error")) {
                 showError(json);
                 return;
             }
 
-            // Caso venha wrapped (ex: { content: [...] })
-            if (json.trim().startsWith("{")) {
-                JsonNode root = mapper.readTree(json);
-                JsonNode content = root.get("content");
-
-                List<UtilizadorDTO> utilizadores =
-                        mapper.readValue(
-                            content.toString(),
-                            new TypeReference<List<UtilizadorDTO>>() {}
-                        );
-
-                utilizadoresTable.getItems().setAll(utilizadores);
-                return;
-            }
-
-            // Caso venha lista direta (igual ao tutorial)
             List<UtilizadorDTO> utilizadores =
                     mapper.readValue(json, new TypeReference<List<UtilizadorDTO>>() {});
 
