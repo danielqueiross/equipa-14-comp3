@@ -1,7 +1,11 @@
 package lp.JavaFxClient.services;
 
-	import java.net.URI;
-	import java.net.http.HttpClient;
+	import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URL;
+import java.net.http.HttpClient;
 	import java.net.http.HttpRequest;
 	import java.net.http.HttpResponse;
 
@@ -44,6 +48,31 @@ package lp.JavaFxClient.services;
 	            return "ERROR: " + e.getMessage();
 	        }
 	    }
+	    public String put(String path, String body) {
+	        try {
+	            URL url = new URL(BASE_URL + path);
+	            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	            conn.setRequestMethod("PUT");
+	            conn.setRequestProperty("Content-Type", "application/json");
+	            conn.setDoOutput(true);
+
+	            if (body != null && !body.isBlank()) {
+	                try (OutputStream os = conn.getOutputStream()) {
+	                    os.write(body.getBytes());
+	                }
+	            }
+
+	            InputStream is = conn.getResponseCode() >= 400
+	                    ? conn.getErrorStream()
+	                    : conn.getInputStream();
+
+	            return new String(is.readAllBytes());
+
+	        } catch (Exception e) {
+	            return "ERROR: " + e.getMessage();
+	        }
+	    }
+
 
 	    public String delete(String path) {
 	        try {

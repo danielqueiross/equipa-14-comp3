@@ -30,7 +30,7 @@ public class EditarEventoController {
             dto.setLotacaoMax(Integer.parseInt(txtLotacao.getText()));
 
             String json = mapper.writeValueAsString(dto);
-            String result = api.post("/api/eventos/" + id, json);
+            String result = api.put("/api/eventos/" + id, json);
             Alert a = new Alert(
             	    Alert.AlertType.INFORMATION,
             	    result == null || result.isBlank()
