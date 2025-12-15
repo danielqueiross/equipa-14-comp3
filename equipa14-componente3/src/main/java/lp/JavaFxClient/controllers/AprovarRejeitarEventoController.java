@@ -24,6 +24,7 @@ public class AprovarRejeitarEventoController {
                 "/api/gestao-eventos/eventos/" + eventoId + "/aprovar?gestorId=" + gestorId,
                 ""
             );
+            showInfo("Evento aprovado com sucesso!", resposta);
 
             Alert a = new Alert(Alert.AlertType.INFORMATION,
                     "Evento aprovado com sucesso!");

@@ -41,10 +41,10 @@ public class CriarUtilizadorController {
             jsonNode.put("tipo", cmbTipo.getValue());
 
             String json = mapper.writeValueAsString(jsonNode);
+            String url = "/api/utilizadores";
+            String result = api.post(url, json);
 
-            String result = api.post("/api/utilizadores", json);
-
-            Alert a = new Alert(Alert.AlertType.INFORMATION, "Utilizador criado com sucesso!");
+            Alert a = new Alert(Alert.AlertType.INFORMATION, "Utilizador criado com sucesso!" + result);
             a.showAndWait();
 
             fechar();
@@ -67,8 +67,4 @@ public class CriarUtilizadorController {
         stage.close();
     }
 
-    private void showError(String msg) {
-        Alert a = new Alert(Alert.AlertType.ERROR, msg);
-        a.showAndWait();
-    }
 }

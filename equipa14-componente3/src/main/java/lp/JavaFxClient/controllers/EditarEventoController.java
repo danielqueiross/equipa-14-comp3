@@ -30,18 +30,19 @@ public class EditarEventoController {
             dto.setLotacaoMax(Integer.parseInt(txtLotacao.getText()));
 
             String json = mapper.writeValueAsString(dto);
-
-            String resposta = api.post("/api/eventos/" + id, json);
-
-            Alert a = new Alert(Alert.AlertType.INFORMATION,
-                    "Evento atualizado com sucesso!");
-            a.showAndWait();
-
+            String result = api.post("/api/eventos/" + id, json);
+            Alert a = new Alert(
+            	    Alert.AlertType.INFORMATION,
+            	    result == null || result.isBlank()
+            	        ? "Evento atualizado com sucesso!"
+            	        : "Evento atualizado:\n" + result
+            	);
+            	a.showAndWait();
             fechar();
 
         } catch (Exception e) {
             Alert a = new Alert(Alert.AlertType.ERROR,
-                    "Erro ao editar evento:\n" + e.getMessage());
+                    "Erro ao editar evento:\n" + e.getMessage() );
             a.showAndWait();
         }
     }
